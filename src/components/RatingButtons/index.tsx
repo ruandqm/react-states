@@ -14,7 +14,7 @@ export const RatingButtons = (props: ratingProps) => {
     }
 
     return (
-        <div className='d-flex gap-2 mt-5'>
+        <div className='d-flex flex-wrap justify-content-center gap-2 mt-5 mb-3'>
             {buttons.map(button => button)}
         </div>
     )

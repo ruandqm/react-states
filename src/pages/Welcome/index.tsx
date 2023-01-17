@@ -5,20 +5,31 @@ import { RateList } from '../../components/RateList'
 import { RatingButtons } from '../../components/RatingButtons'
 import { Iquote } from '../../components/Quote'
 import './index.scss'
+import axios from 'axios'
 
 
 export const Welcome = () => {
+
+    const [quote, setQuote] = useState<Iquote>({})
     const [isVoting, setIsVoting] = useState(false)
     const [rated, addRated] = useState<Iquote[]>([])
     const [isRated, setIsRated] = useState(false)
     const [rateLevel, setRateLevel] = useState<number>(NaN)
     const titleRef = useRef<HTMLHeadingElement>(null)
-    const quote = {
+
+    const getQuote = async () => {
+        const response = await axios.get('https://animechan.vercel.app/api/random')
+        const quote = response.data
+        setQuote(quote)
+    }
+
+    /* const quote = {
         series: 'série',
         character: 'personagem',
         quote: 'Lorem ipsum dolor sit amet',
         rate: rateLevel
-    }
+    } */
+
     const startVoting = () => {
         setIsVoting(true)
         /*  titleRef.current == undefined ? null : titleRef.current.style.transform = 'translateY(-10vh)' */
@@ -30,11 +41,17 @@ export const Welcome = () => {
     }
 
     useEffect(() => {
+        getQuote()
+    }, [])
+
+    useEffect(() => {
         isRated ? (
             addRated((rated) => {
+                quote.rate = rateLevel
                 let actList = rated
                 actList.push(quote)
                 setIsRated(!isRated)
+                getQuote()
                 return actList
             })) : null
     }, [rateLevel])
@@ -47,10 +64,9 @@ export const Welcome = () => {
                     {!isVoting && <Button text='Iniciar votação' style='btn btn-warning' action={startVoting}></Button>}
                     {isVoting && (
                         <>
-                            <Quote series={quote.series} character={quote.character} quote={quote.quote} />
+                            <Quote anime={quote.anime} character={quote.character} quote={quote.quote} />
                             <RatingButtons action={rate} />
                             <RateList ratedList={rated} />
-
                         </>
                     )}
                 </div>
