@@ -62,6 +62,7 @@ export const Welcome = () => {
                 <div className="col align-items-center">
                     <h1 ref={titleRef} className='mb-5 mt-3 transition'>Seja bem-vindo</h1>
                     {!isVoting && <Button text='Iniciar votação' style='btn btn-warning' action={startVoting}></Button>}
+                    {!isVoting && <a href='/login'> <Button text='Login' style='btn btn-primary' action={startVoting}></Button> </a>}
                     {isVoting && (
                         <>
                             <Quote anime={quote.anime} character={quote.character} quote={quote.quote} />
