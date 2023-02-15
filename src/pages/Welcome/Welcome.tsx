@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button } from '../../components/Button'
-import { Quote } from '../../components/Quote'
-import { RateList } from '../../components/RateList'
+import { Button } from '../../components/Button/Button'
+import { Quote } from '../../components/Quote/Quote'
+import { RateList } from '../../components/RateList/RateList'
 import { RatingButtons } from '../../components/RatingButtons'
-import { Iquote } from '../../components/Quote'
+import { Iquote } from '../../components/Quote/Quote'
 import './index.scss'
 import axios from 'axios'
 
 
-export const Welcome = () => {
+const Welcome = () => {
 
     const [quote, setQuote] = useState<Iquote>({})
     const [isVoting, setIsVoting] = useState(false)
@@ -23,16 +23,8 @@ export const Welcome = () => {
         setQuote(quote)
     }
 
-    /* const quote = {
-        series: 'série',
-        character: 'personagem',
-        quote: 'Lorem ipsum dolor sit amet',
-        rate: rateLevel
-    } */
-
     const startVoting = () => {
         setIsVoting(true)
-        /*  titleRef.current == undefined ? null : titleRef.current.style.transform = 'translateY(-10vh)' */
     }
     const rate = (rate: React.ChangeEvent<HTMLButtonElement>) => {
         console.log(rate.target.value)
@@ -75,3 +67,5 @@ export const Welcome = () => {
         </div>
     )
 }
+
+export default Welcome

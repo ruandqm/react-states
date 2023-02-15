@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useState } from 'react'
-import { Button } from '../Button'
+import { Button } from '../Button/Button'
 
 interface ratingProps {
     action?: (parameter?: any) => void

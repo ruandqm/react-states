@@ -1,11 +1,11 @@
-import { Welcome } from "./pages/Welcome"
+import Welcome from "./pages/Welcome/Welcome"
 import './App.scss'
 
 function App() {
 
   return (
     <div className="app">
-      <Welcome></Welcome>
+      <Welcome />
     </div>
   )
 }
